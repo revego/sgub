@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'bulma-rails', '~> 0.7.4'
 gem 'bulma-extensions-rails', '~> 1.0.30'
+gem 'devise', '>= 4.7.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
