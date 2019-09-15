@@ -13,7 +13,7 @@ class GigsController < ApplicationController
     @gig = current_user.gigs.build(gig_params)
 
     if @gig.save
-      @gig.pricings.create(Pricing.pricing_types.values.map{ |x| {pricing_type: x}})
+      @gig.pricings.create(Pricing.pricing_types.values.map{ |x| { pricing_type: x }})
       redirect_to edit_gig_path(@gig), notice: "Save..."
     else
       redirect_to request.referrer, flash: { error: @gig.errors.full_messages }      
