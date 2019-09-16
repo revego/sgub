@@ -85,6 +85,17 @@ class GigsController < ApplicationController
 
   def upload_photo
     @gig.photos.attach(params[:file])
+    render json: {success: true}
+  end
+
+  def delete_photo
+    @image = ActiveStorage::Attachment.find(params[:photo_id])
+    @image.purge
+    redirect_to edit_gig_path(@gig, step: 4)
+  end
+
+  def upload_photo
+    @gig.photos.attach(params[:file])
     render json: { success: true }
   end
 
