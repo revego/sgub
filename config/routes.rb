@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   post 'users/edit', to: 'users#update'
 
+  put '/orders/:id/complete', to: 'orders#complete', as: 'complete_order'
+
   resources :gigs do
     member do
       delete :delete_photo
