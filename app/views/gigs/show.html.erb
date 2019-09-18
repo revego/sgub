@@ -79,19 +79,22 @@
                                                     <strong><%= p.title %></strong>                                                                                                        
                                                 </div>
                                                 <div class="media-right">
-                                                    <p class="title is-4"><%= p.price %></p>
+                                                    <p class="title is-4">$<%= p.price %></p>
                                                 </div>                                                
                                             </div>
                                             <div class="content f-15">
                                                 <p class="m-t-30"><%= p.description %></p>
                                                 <p class="m-t-30">
-                                                    <strong><i class="far fa-clock"></i> <%= pluralize(p.delivery_time, 'Day') %>Delivery</strong>                                                    
+                                                    <strong><i class="far fa-clock"></i> <%= pluralize(p.delivery_time, 'Day') %> Delivery</strong>                                                    
                                                 </p>
                                             </div>
-                                            <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id )  %>
-                                                <button class="button is-fullwidth is-danger">Continue ($<%= p.price %>)</button>
+                                             <% if (user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
+                                                <%= form_for([@gig, @gig.orders.new]) do |f| %>
+                                                    <%= hidden_field_tag 'pricing_type', p.pricing_type %>
+                                                    <%= f.submit "Continue ($#{p.price})", class: "button is-fullwidth is-danger", data: {confirm: "Are you sure?"} %>
+                                                <% end %>
                                             <% else %>
-                                                <button class="button is-fullwidth is-danger" disabled>Not Available</button>
+                                                <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
                                             <% end %>
                                         </div>
                                     </div>
