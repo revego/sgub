@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: freelancer_development
+  database: freelance_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: freelancer_production
+  database: freelance_production
   username: freelancer
   password: <%= ENV['FREELANCER_DATABASE_PASSWORD'] %>

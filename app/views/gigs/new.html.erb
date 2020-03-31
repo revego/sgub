@@ -3,7 +3,7 @@
     <div class="steps" id="stepsDemo">
 
       <!-- 5 STEPS -->
-      <div class="step-item is-active is-primary">
+      <div class="step-item is-active is-dark">
         <div class="step-marker">1</div>
         <div class="step-details">
           <p class="step-title">Overview</p>
@@ -45,7 +45,7 @@
             <%= f.select(:category_id, options_for_select(@categories.map{ |c| [c.name, c.id] })) %>
             <div class="field is-grouped is-grouped-centered m-t-25">
                 <a href="" class="button is-light">Cancel</a>
-                <%= f.submit "Save & Controller", class: "button is-primary" %>
+                <%= f.submit "Save & Controller", class: "button is-dark" %>
             </div>
         </div>
       <% end %>
