@@ -2,7 +2,7 @@
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
             <!--img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"-->
-            <h1 class="title is-4 has-text-white">Code4you</h1>
+            <h1 class="title is-4 has-text-white">RentACode</h1>
         </a>
 
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -72,14 +72,14 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">Buying</a>
                     <div class="navbar-dropdown">
-                        <a class="navbar-item">Post Request</a>
-                        <a class="navbar-item">Manage Requests</a>
+                        <%= link_to 'Post Request', new_request_path, class: "navbar-item" %>
+                        <%= link_to 'Manage Requests', requests_path, class: "navbar-item" %>
                     </div>
                 </div>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">Buyer Requests</a>
                     <div class="navbar-dropdown">
-                        <a class="navbar-item">Active Request</a>
+                        <%= link_to 'Active Requests', all_requests_path, class: "navbar-item" %>
                         <a class="navbar-item">Offers Sent</a>
                     </div>
                 </div>
