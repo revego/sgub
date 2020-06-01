@@ -1,6 +1,6 @@
 class CreateOrders < ActiveRecord::Migration[6.0]
   def change
-    create_table :orders, id: :uuid do |t|
+    create_table :orders, id: :uid do |t|
       t.date :due_date
       t.string :title
       t.float :amount
