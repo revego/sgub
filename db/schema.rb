@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_195431) do
+ActiveRecord::Schema.define(version: 2020_06_01_213814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_195431) do
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
 
-  create_table "orders", id: :uid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "due_date"
     t.string "title"
     t.float "amount"
@@ -123,6 +123,21 @@ ActiveRecord::Schema.define(version: 2020_05_31_195431) do
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "review"
+    t.integer "stars", default: 1
+    t.uuid "order_id", null: false
+    t.bigint "gig_id"
+    t.bigint "buyer_id"
+    t.bigint "seller_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_reviews_on_buyer_id"
+    t.index ["gig_id"], name: "index_reviews_on_gig_id"
+    t.index ["order_id"], name: "index_reviews_on_order_id"
+    t.index ["seller_id"], name: "index_reviews_on_seller_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -139,6 +154,9 @@ ActiveRecord::Schema.define(version: 2020_05_31_195431) do
     t.string "provider"
     t.string "uid"
     t.string "image"
+    t.string "stripe_last_4"
+    t.string "stripe_id"
+    t.string "paypal"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -154,4 +172,8 @@ ActiveRecord::Schema.define(version: 2020_05_31_195431) do
   add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "requests", "categories"
   add_foreign_key "requests", "users"
+  add_foreign_key "reviews", "gigs"
+  add_foreign_key "reviews", "orders"
+  add_foreign_key "reviews", "users", column: "buyer_id"
+  add_foreign_key "reviews", "users", column: "seller_id"
 end

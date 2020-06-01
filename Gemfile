@@ -30,6 +30,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'faker', '= 1.9.3'
 gem 'kaminari'
+
+gem 'stripe', '=4.18.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
