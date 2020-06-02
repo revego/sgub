@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post '/users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'
   post '/reviews', to: 'reviews#create'
+  post '/users/edit_phone', to: 'users#callback_phone'
   post '/settings/payment', to: 'users#update_payment', as: "update_payment"
   post '/settings/payout', to: 'users#update_payout', as: "update_payout"
 

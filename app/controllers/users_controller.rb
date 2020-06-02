@@ -56,4 +56,28 @@ class UsersController < ApplicationController
   def current_user_params
     params.require(:user).permit(:from, :about, :status, :language, :avatar)
   end
+
+  def callback_phone
+    path_access_token = "https://graph.accountkit.com/v1.1/access_token?" +
+                        "grant_type=authorization_code" +
+                        "&code=#{params[:code]}" +
+                        "&access_token=AA|#{1280848278763206}|#{"09cf394c1f9243a18a7124dc7ab10da8"}"
+
+    response = Net::HTTP.get(URI.parse(path_access_token))
+    response = JSON.parse(response)
+
+    if response['access_token']
+      path_get_data = "https://graph.accountkit.com/v1.1/me?access_token=#{response['access_token']}"
+      response = Net::HTTP.get(URI.parse(path_get_data))
+      response = JSON.parse(response)
+
+      if response['phone']['number']
+        current_user.update(phone: response['phone']['number'])
+        return render json: {success: true}
+      end
+    end
+
+    return render json: {success: false}
+
+  end
 end
