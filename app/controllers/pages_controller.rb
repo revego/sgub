@@ -29,7 +29,7 @@ class PagesController < ApplicationController
         end
 
         #@gigs = Gig.where(query_condition)
-
+        
         if !params[:min].blank?
             query_condition[0] += " AND pricings.price >= ?"
             query_condition.push @min

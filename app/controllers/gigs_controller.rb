@@ -26,6 +26,38 @@ class GigsController < ApplicationController
     @categories = Category.all
   end
 
+  def checkout
+    if current_user.stripe_id
+      @stripe_customer = Stripe::Customer.retrieve(current_user.stripe_id)
+
+      @gig = Gig.find(params[:id])
+      @pricing = @gig.pricings.find_by(pricing_type: params[:pricing_type])
+    else
+      redirect_to settings_payment_path, alert: "Please add your card first"
+    end
+  end
+
+  def checkout2
+
+    subscription = Subscription.find_by_user_id(current_user.id)
+    if subscription.present? && subscription.success?
+      plan = Stripe::Plan.retrieve(subscription.plan_id)
+      @rate =  plan.metadata.commission.to_f/100
+    else
+      @rate = 10.0/100
+    end
+
+    if current_user.stripe_id
+      @stripe_customer = Stripe::Customer.retrieve(current_user.stripe_id)
+
+      @gig = Gig.find(params[:id])
+      @pricing = @gig.pricings.find_by(pricing_type: params[:pricing_type])
+    else
+      redirect_to settings_payment_path, alert: "Please add your card first"
+    end
+  end
+
+
   def update
 
     if @step == 2

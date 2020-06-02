@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Freelancer</title>
+    <title>Sgub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,12 +11,17 @@
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://js.stripe.com/v3/"></script>
+
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/notification' %>    
-
+    <%= render  "shared/navbar" %>
+    <%= render 'shared/notification' %>
+    
     <%= yield %>
   </body>
 </html>
+
