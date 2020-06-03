@@ -29,9 +29,15 @@ gem 'omniauth-facebook', '= 5.0.0'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'faker', '= 1.9.3'
-gem 'kaminari'
+gem 'kaminari', '=1.1.0'
 
 gem 'stripe', '=4.18.1'
+
+gem 'trestle', '=0.8.12'
+gem 'trestle-auth', '=0.2.5'
+gem 'trestle-search', '=0.3.0'
+gem 'trestle-tinymce', '=0.1.3'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
