@@ -38,6 +38,8 @@ gem 'trestle-auth', '=0.2.5'
 gem 'trestle-search', '=0.3.0'
 gem 'trestle-tinymce', '=0.1.3'
 
+gem 'activemerchant', '=1.95.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

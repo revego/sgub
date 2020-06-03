@@ -53,6 +53,15 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # do not check yarn compatibility
+  config.webpacker.check_yarn_integrity = false
+
+  # accept range ip
+  #config.web_console.whitelisted_ips = '192.168.1.0/24'
+  
+  # include all messages
+  config.web_console.whiny_requests = false
+
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
@@ -62,5 +71,13 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.webpacker.check_yarn_integrity = false
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "marco.giardina-facilitator_api1.gmail.com",
+      password: "1371748869",
+      signature: "AdxquB3pX7FSXkMmpuFcX3bc02a3Ajl..lEOhJTWPLFNXcpQYGfbDI7a"
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end
