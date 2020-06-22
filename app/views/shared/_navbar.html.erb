@@ -1,7 +1,6 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
-            <!--img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"-->
             <h1 class="title is-4 has-text-white">Sgub</h1>
         </a>
 
@@ -24,7 +23,7 @@
                             <%= text_field_tag 'q', '', class: "input", placeholder: "Try 'logo design" %>
                         </div>
                         <div class="control">
-                            <button class="button is-primary" type="submit">Search</button>
+                            <button class="button is-danger" type="submit">Search</button>
                         </div>
                     </div>
                 <% end %>
@@ -32,14 +31,15 @@
         </div>
 
         <div class="navbar-end">
+            <%= link_to 'Pricing', plans_path, class: "navbar-item" %>
             <%= link_to 'Post Gig', new_gig_path, class: "navbar-item" %>
-            <%= link_to 'Browse Gig', search_path, class: "navbar-item" %>
+            <%= link_to 'Browse Gigs', search_path, class: "navbar-item" %>
 
             <% if (!user_signed_in?) %>
                 <div class="navbar-item">
                     <div class="buttons">
-                        <%= link_to "Sign Up", new_user_registration_path, class: "button is-primary" %>
-                        <%= link_to "Login", new_user_session_path, class: "button is-light" %>
+                        <%= link_to  "Sign Up", new_user_registration_path, class: "button is-danger" %>
+                        <%= link_to  "Login", new_user_session_path, class: "button is-light" %>
                     </div>
                 </div>
             <% else %>
@@ -50,12 +50,12 @@
                         </figure>
                         <%= current_user.full_name %>
                     </a>
+
                     <div class="navbar-dropdown">
-                        <%= link_to 'Profile', edit_user_registration_path, class: "navbar-item" %>
-                        <!--a href="" class="navbar-item">Profile</a-->
+                        <%= link_to  "Profile", edit_user_registration_path, class: "navbar-item" %>
                         <%= link_to 'Dashboard', dashboard_path, class: "navbar-item" %>
                         <hr class="navbar-divider">
-                        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "navbar-item" %>
+                        <%= link_to  "Log out", destroy_user_session_path, method: :delete, class: "navbar-item" %>
                     </div>
                 </div>
             <% end %>
@@ -63,11 +63,12 @@
     </div>
 </nav>
 
-<% if (user_signed_in?) && !current_page?(root_path) && !current_page?(search_path) && !current_page?("/gigs/#{params[:id]}") && !current_page?("/user/#{params[:id]}") %>
+<% if (user_signed_in?) && !current_page?(root_path) && !current_page?(plans_path) && !current_page?(search_path) && !current_page?("/gigs/#{params[:id]}") && !current_page?("/users/#{params[:id]}") %>
     <nav class="navbar has-shadow" style="z-index: 5">
         <div class="container">
             <div class="navbar">
                 <%= link_to 'Dashboard', dashboard_path, class: "navbar-item" %>
+                <%= link_to 'Calendar', calendar_path, class: "navbar-item" %>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">Selling</a>
                     <div class="navbar-dropdown">
@@ -87,8 +88,7 @@
                         <%= link_to 'Active Requests', all_requests_path, class: "navbar-item" %>
                         <%= link_to 'Offers Sent', my_offers_path, class: "navbar-item" %>
                     </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
+                </div><div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">Orders</a>
                     <div class="navbar-dropdown">
                         <%= link_to 'Selling Orders', selling_orders_path, class: "navbar-item" %>
@@ -110,15 +110,15 @@
 <% end %>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-    // Check for click events on the navbar burger icon
-    $(".navbar-burger").click(function() {
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
 
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        $(".navbar-burger").toggleClass("is-active");
-        $(".navbar-menu").toggleClass("is-active");
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
 
-    });
+  });
 });
 </script>

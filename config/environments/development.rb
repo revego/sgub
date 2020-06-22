@@ -53,15 +53,6 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # do not check yarn compatibility
-  config.webpacker.check_yarn_integrity = false
-
-  # accept range ip
-  #config.web_console.whitelisted_ips = '192.168.1.0/24'
-  
-  # include all messages
-  config.web_console.whiny_requests = false
-
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
@@ -74,10 +65,12 @@ Rails.application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
-      login: "marco.giardina-facilitator_api1.gmail.com",
-      password: "1371748869",
-      signature: "AdxquB3pX7FSXkMmpuFcX3bc02a3Ajl..lEOhJTWPLFNXcpQYGfbDI7a"
+      login: "demo_merchant_api1.leotrieu2.com",
+      password: "7PX8WU7D5WME8W8E",
+      signature: "A6hGfn.X9iOurjK.glDVzcxH2SJpAOXj82I3VAV9xBASSsntR44hYJ6p"
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
+
+  config.hosts = nil
 end

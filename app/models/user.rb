@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   has_one_attached :avatar
   has_many :gigs
   has_many :requests
@@ -14,9 +15,9 @@ class User < ApplicationRecord
          :omniauthable
 
   validates :full_name, presence: true, length: {maximum: 50}
-  
+
   def self.from_omniauth(auth)
-    user = User.where(email:auth.info.email).first
+    user = User.where(email: auth.info.email).first
 
     if user
       if !user.provider
@@ -24,7 +25,6 @@ class User < ApplicationRecord
       end
       return user
     else
-      
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.email = auth.info.email
         user.password = Devise.friendly_token[0, 20]

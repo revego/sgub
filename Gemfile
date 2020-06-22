@@ -3,33 +3,24 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0'
-# Use postgresql as the database for Active Record
+gem 'rails', '=6.0.0.beta3'
 gem 'pg', '>= 0.18', '< 2.0'
-# Use Puma as the app server
 gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+gem 'jbuilder', '~> 2.5'
+
+gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'bulma-rails', '~> 0.7.4'
 gem 'bulma-extensions-rails', '~> 1.0.30'
-gem 'devise', '>= 4.7.0'
+gem 'devise', '=4.6.1'
 
-gem 'omniauth', '>= 1.9.0'
-#gem 'omniauth'
+gem 'omniauth', '= 1.9.0'
 gem 'omniauth-facebook', '= 5.0.0'
-#gem 'omniauth-facebook' 
-gem 'omniauth-twitter'
-gem 'omniauth-github'
-gem 'faker', '= 1.9.3'
-gem 'kaminari', '=1.1.0'
+gem 'faker', '=1.9.3'
+gem 'kaminari'
 
 gem 'stripe', '=4.18.1'
 
@@ -39,17 +30,6 @@ gem 'trestle-search', '=0.3.0'
 gem 'trestle-tinymce', '=0.1.3'
 
 gem 'activemerchant', '=1.95.0'
-
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
-
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

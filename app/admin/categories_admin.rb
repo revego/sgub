@@ -4,7 +4,7 @@ Trestle.resource(:categories) do
   end
 
   # Customize the table columns shown on the index view.
-  #
+  
   table do
     column :name
     column :active
@@ -41,8 +41,6 @@ Trestle.resource(:categories) do
   form do |category|
     text_field :name
   end
-
-
 
   # Customize the form fields shown on the new/edit views.
   #

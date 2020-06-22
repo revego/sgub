@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   def dashboard
+    @subscription = Subscription.find_by_user_id(current_user.id)
+    if @subscription.present?
+      @plan = Stripe::Plan.retrieve(@subscription.plan_id)
+    end
   end
 
   def show
@@ -11,11 +16,35 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(current_user_params)
-      flash[:notice] = 'Saved..'
+      flash[:notice] = "Saved..."
     else
-      flash[:notice] = 'Cannot update'
+      flash[:alert] = "Cannot update..."
     end
     redirect_to dashboard_path
+  end
+
+  def callback_phone
+    path_access_token = "https://graph.accountkit.com/v1.1/access_token?" +
+                        "grant_type=authorization_code" +
+                        "&code=#{params[:code]}" +
+                        "&access_token=AA|#{1029929950529170}|#{"cdd0867cf5e91d05babec007a31490a6"}"
+
+    response = Net::HTTP.get(URI.parse(path_access_token))
+    response = JSON.parse(response)
+
+    if response['access_token']
+      path_get_data = "https://graph.accountkit.com/v1.1/me?access_token=#{response['access_token']}"
+      response = Net::HTTP.get(URI.parse(path_get_data))
+      response = JSON.parse(response)
+
+      if response['phone']['number']
+        current_user.update(phone: response['phone']['number'])
+        return render json: {success: true}
+      end
+    end
+
+    return render json: {success: false}
+
   end
 
   def update_payment
@@ -81,30 +110,6 @@ class UsersController < ApplicationController
                   ).page(params[:page])
   end
 
-  def callback_phone
-    path_access_token = "https://graph.accountkit.com/v1.1/access_token?" +
-                        "grant_type=authorization_code" +
-                        "&code=#{params[:code]}" +
-                        "&access_token=AA|#{1280848278763206}|#{"09cf394c1f9243a18a7124dc7ab10da8"}"
-
-    response = Net::HTTP.get(URI.parse(path_access_token))
-    response = JSON.parse(response)
-
-    if response['access_token']
-      path_get_data = "https://graph.accountkit.com/v1.1/me?access_token=#{response['access_token']}"
-      response = Net::HTTP.get(URI.parse(path_get_data))
-      response = JSON.parse(response)
-
-      if response['phone']['number']
-        current_user.update(phone: response['phone']['number'])
-        return render json: {success: true}
-      end
-    end
-
-    return render json: {success: false}
-
-  end
-
   def withdraw
     amount = params[:amount].to_i
     is_pending_withdraw = Transaction.exists?(buyer_id: current_user.id, 
@@ -134,12 +139,19 @@ class UsersController < ApplicationController
 
     redirect_to request.referrer
   end
-end
 
+  def remove_subscription
+    @subscription = Subscription.find_by_user_id(current_user.id)
+
+    if @subscription.present? && @subscription.sub_id
+      Stripe::Subscription.delete(@subscription.sub_id)
+      return redirect_to request.referrer, notice: "Your subscription is cancelled"
+    end
+    return redirect_to request.referrer, aler: "Cannot cancel your subscription. Contact admin."
+  end
 
   private
   def current_user_params
     params.require(:user).permit(:from, :about, :status, :language, :avatar)
   end
-
-  
+end

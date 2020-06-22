@@ -10,5 +10,4 @@ class Conversation < ApplicationRecord
       return Message.new updated_at: Time.now
     end
   end
-
 end

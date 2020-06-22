@@ -1,51 +1,49 @@
 class PagesController < ApplicationController
-    def home
+  def home
+  end
+
+  def search
+    @categories = Category.all
+    @category = Category.find(params[:category]) if params[:category].present?
+
+    # @gigs = Gig.where("active = ? AND gigs.title ILIKE ? AND category_id = ?", true, "%#{params[:q]}%", params[:category])
+
+    @q = params[:q]
+    @min = params[:min]
+    @max = params[:max]
+    @delivery = params[:delivery].present? ? params[:delivery] : "0"
+    @sort = params[:sort].present? ? params[:sort] : "price asc"
+
+    query_condition = []
+    query_condition[0] = "gigs.active = true"
+    query_condition[0] += " AND ((gigs.has_single_pricing = true AND pricings.pricing_type = 0) OR (gigs.has_single_pricing = false))"
+
+    if !@q.blank?
+      query_condition[0] += " AND gigs.title ILIKE ?"
+      query_condition.push "%#{@q}%"
     end
 
-    def search
-        @categories = Category.all
-        @category = Category.find(params[:category]) if params[:category].present?
+    if !params[:category].blank?
+      query_condition[0] += " AND category_id = ?"
+      query_condition.push params[:category]
+    end
 
-        #@gigs = Gig.where("active = ? AND gigs.title ILIKE ? AND category_id = ?", true, "%#{params[:q]}%", params[:category])
+    if !params[:min].blank?
+      query_condition[0] += " AND pricings.price >= ?"
+      query_condition.push @min
+    end
 
-        @q = params[:q]
-        @min = params[:min]
-        @max = params[:max]
-        @delivery = params[:delivery].present? ? params[:delivery] : "0"
-        @sort = params[:sort].present? ? params[:sort] : "price asc"
+    if !params[:max].blank?
+      query_condition[0] += " AND pricings.price <= ?"
+      query_condition.push @max
+    end
 
-        query_condition = []
-        query_condition[0] = "gigs.active = true"
-        query_condition[0] += " AND ((gigs.has_single_pricing = true AND pricings.pricing_type = 0) OR (gigs.has_single_pricing = false))"
+    if !params[:delivery].blank? && params[:delivery] != "0"
+      query_condition[0] += " AND pricings.delivery_time <= ?"
+      query_condition.push @delivery
+    end
 
-        if !@q.blank?
-            query_condition[0] += " AND gigs.title ILIKE ?"
-            query_condition.push "%#{@q}%"
-        end
-
-        if !params[:category].blank?
-            query_condition[0] += " AND category_id = ?"
-            query_condition.push params[:category]
-        end
-
-        #@gigs = Gig.where(query_condition)
-        
-        if !params[:min].blank?
-            query_condition[0] += " AND pricings.price >= ?"
-            query_condition.push @min
-        end
-
-        if !params[:max].blank?
-            query_condition[0] += " AND pricings.price <= ?"
-            query_condition.push @max
-        end
-
-        if !params[:delivery].blank? && params[:delivery] != "0"
-            query_condition[0] += " AND pricings.delivery_time <= ?"
-            query_condition.push @delivery
-        end
-
-        @gigs = Gig
+    @gigs = Gig
                 .select("gigs.id, gigs.title, gigs.user_id, MIN(pricings.price) AS price")
                 .joins(:pricings)
                 .where(query_condition)
@@ -53,25 +51,23 @@ class PagesController < ApplicationController
                 .order(@sort)
                 .page(params[:page])
                 .per(6)
-        
-    end
+  end
 
-    def calendar
-        params[:start_date] ||= Date.current.to_s
-    
-        start_date = Date.parse(params[:start_date])
-        first_of_month = (start_date - 1.month).beginning_of_month
-        end_of_month = (start_date + 1.month).end_of_month
-    
-        @orders = Order.where("seller_id = ? AND status = ? AND due_date BETWEEN ? AND ?", 
-                              current_user.id,
-                              Order.statuses[:inprogress],
-                              first_of_month,
-                              end_of_month)
-    end
-    
-    def plans
-        @plans = Stripe::Plan.list(product: 'prod_FUYw3idiOrdeJv')
-    end
-    
+  def calendar
+    params[:start_date] ||= Date.current.to_s
+
+    start_date = Date.parse(params[:start_date])
+    first_of_month = (start_date - 1.month).beginning_of_month
+    end_of_month = (start_date + 1.month).end_of_month
+
+    @orders = Order.where("seller_id = ? AND status = ? AND due_date BETWEEN ? AND ?", 
+                          current_user.id,
+                          Order.statuses[:inprogress],
+                          first_of_month,
+                          end_of_month)
+  end
+
+  def plans
+    @plans = Stripe::Plan.list(product: 'prod_FUYw3idiOrdeJv')
+  end
 end

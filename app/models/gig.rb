@@ -10,12 +10,9 @@ class Gig < ApplicationRecord
 
   accepts_nested_attributes_for :pricings
 
-  validates :title, presence: { message: 'cannot be blank'}
-
-
+  validates :title, presence: { message: 'cannot be blank' }
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:stars).round(1)
   end
-  
 end

@@ -4,5 +4,4 @@ class Offer < ApplicationRecord
 
   enum status: [:pending, :accepted, :rejected]
   validates :amount, :days, numericality: { only_integer: true, message: "must be a number" }
-
 end

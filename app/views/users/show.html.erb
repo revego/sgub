@@ -16,58 +16,65 @@
                                     <%= image_tag avatar_url(@user), class: "is-rounded" %>
                                 </figure>
                             </div>
+                            
                             <div class="card-content">
 
                                 <!-- Upload Button -->
-                                <div class="content has-text-centered"></div>
-                                    <p class="title is-5"><%= @user.full_name%></p>
+                                <div class="content has-text-centered">
+                                    <p class="title is-5"><%= @user.full_name %></p>
                                     <% if current_user.id != @user.id %>
                                       <a class="button is-black is-outlined is-fullwidth toggle-contact">Contact Me</a>
                                     <% end %>
+                                </div>
                                 <hr class="h-10">
                                 
                                 <!-- Member -->
-                                <article class="media"></article>
+                                <article class="media">
                                     <div class="media-content">Member since</div>
-                                    <div class="class media-right">
+                                    <div class="media-right">
                                         <strong><%= @user.created_at.strftime('%b %Y') %></strong>
                                     </div>
+                                </article>
                                 <hr class="h-10">
                                 
                                 <!-- From -->
-                                <article class="media">     
+                                <article class="media">
                                     <div class="media-content">From</div>
-                                    <div class="class media-right">
+                                    <div class="media-right">
                                         <strong><%= @user.from %></strong>
                                     </div>
-                                </article>                          
+                                </article>                                
                                 <hr class="h-10">
 
                                 <!-- Online Status -->
                                 <article class="media">
                                     <div class="media-content">Online Status</div>
-                                    <div class="class media-right">
-                                        <strong><% if @user.status %>Online <% else %> Offline <% end %></strong>
-                                    </div> 
+                                    <div class="media-right">
+                                        <strong><% if @user.status %> Online <% else %> Offline <% end %></strong>
+                                    </div>
                                 </article>
+
                             </div>
                         </div>
                     </div>
+
                     <!-- Bottom Card -->
                     <div class="column is-full">
                         <div class="card">
                             <div class="card-content">
+
                                 <!-- About -->
                                 <article class="media">
                                     <div class="media-content">
                                         <p>
                                             <strong>About Yourself</strong>
                                             <br>
-                                             <%= @user.about %>
+                                            <%= @user.about %>
                                         </p>
                                     </div>
                                 </article>
                                 <hr class="h-10">
+
                                 <!-- Language -->
                                 <article class="media">
                                     <div class="media-content">
@@ -85,7 +92,7 @@
                                     <div class="content">
                                         <p>
                                             <strong>Linked Account</strong><br/>
-                                            <% if @user.uid %>
+                                            <% if @user.provider %>
                                                 <span class="has-text-success">Facebook verified</span>
                                             <% else %>
                                                 <span class="has-text-danger">Facebook unverified</span>
@@ -111,12 +118,17 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+
             <!-- RIGHT SIDE -->
             <div class="column">
+
                 <div class="columns is-multiline">
-                 <% @user.gigs.each do |gig| %>
+                    <!-- Sample Gig -->
+                    <% @user.gigs.each do |gig| %>
+
                         <div class="column is-one-third">
                             <div class="card">
 
@@ -131,7 +143,8 @@
                                 <div class="card-content p-t-5 p-b-5">
                                     <p class="subtitle is-6 m-b-5"><%= link_to gig.title, gig_path(gig) %></p>
                                     <span class="star-review"><i class="fa fa-star"></i>
-                                        <%= gig.average_rating %> <span class="has-text-primary"><%= gig.reviews.count %></span>
+                                        <%= gig.average_rating %>
+                                        <span class="has-text-primary">(<%= gig.reviews.count %>)</span>
                                     </span>                                        
                                 </div>
 
@@ -141,21 +154,23 @@
                                     <a class="has-text-danger is-block card-footer-item has-text-right">
                                         <% if !basic_price.nil? %>
                                             <span class="small-title">STARTING AT</span> 
-                                            <strong>$<%= basic_price.price %></strong> 
-                                        
+                                            <strong>$<%= basic_price.price %></strong>                                            
                                         <% else %>
                                             <strong>
                                                 <span class="small-title has-text-dark">NO PRICING YET</span>
                                             </strong>
-                                        <% end %>                                           
+                                        <% end %>
                                     </a>
                                 </footer>  
+                                
                             </div>
                         </div>
+
                     <% end %>
                 </div>
 
-                 <div class="card">
+
+                <div class="card">
                     <div class="card-header">
                         <div class="card-header-title">Latest Reviews</div>
                     </div>
@@ -189,7 +204,8 @@
                     </div>
                 </div>
             </div>
-        </div>  
+            
+        </div>
     </div>
 </section>
 
@@ -249,3 +265,4 @@
         });
     }
 </script>
+

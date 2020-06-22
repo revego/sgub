@@ -4,4 +4,3 @@ class MessageChannel < ApplicationCable::Channel
     stream_for conversation
   end
 end
-

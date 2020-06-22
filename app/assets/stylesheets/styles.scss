@@ -20,9 +20,10 @@ $sides: (top, bottom, left, right);
   }
 
   .h-#{$space} {
-    margin-top: #{Sspace}px !important;
-    margin-bottom: #{Sspace}px !important;
+    margin-top: #{$space}px !important;
+    margin-bottom: #{$space}px !important;
   }
+
   .f-#{$space} {
     font-size: #{$space}px !important;
   }
@@ -33,7 +34,7 @@ $sides: (top, bottom, left, right);
 }
 
 .small-title {
-  font-size: 18px;
+  font-size: 10px;
 }
 
 .star-review {
@@ -48,6 +49,10 @@ $sides: (top, bottom, left, right);
   background: white;
 }
 
+.dropzone .dz-message {
+  font-weight: 400;
+}
+
 .dropzone .dz-message .note {
   font-size: 0.8em;
   font-weight: 200;
@@ -57,7 +62,7 @@ $sides: (top, bottom, left, right);
 
 .form-container {
   margin-left: 100px;
-  margin-right:100px;
+  margin-right: 100px;
 }
 
 .pagination-link.is-current {
@@ -118,10 +123,4 @@ $sides: (top, bottom, left, right);
   position: relative;
   top: 8px;
   left: 20px;
-}
-
-.conversation-message {
-  margin-bottom: 5px !important;
-  padding: 10px !important;
-  font-size: 15px;
 }

@@ -6,7 +6,7 @@ class Request < ApplicationRecord
   has_many :offers, dependent: :delete_all
   has_many :orders
 
-  validates :title, presence: { message: "cannot be empty"}
-  validates :description, presence: { message: "cannot be empty"}
-  validates :delivery, numericality: { only_integer: true, message: "must be a number"}
+  validates :title, presence: { message: "cannot be empty" }
+  validates :description, presence: { message: "cannot be empty" }
+  validates :delivery, numericality: { only_integer: true, message: "must be a number" }
 end
