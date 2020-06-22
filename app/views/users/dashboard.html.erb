@@ -16,35 +16,37 @@
                                     <%= image_tag avatar_url(current_user), class: "is-rounded" %>
                                 </figure>
                             </div>
+                            
                             <div class="card-content">
 
                                 <!-- Upload Button -->
-                                <div class="content has-text-centered"></div>
-                                    <p class="title is-5"><%= current_user.full_name%></p>
+                                <div class="content has-text-centered">
+                                    <p class="title is-5"><%= current_user.full_name %></p>
                                     <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post do |f| %>
-                                      <div class="file">
-                                        <label class="button is-dark is-outlined is-fullwidth">
-                                            <%= f.file_field :avatar, class: "file-input", onchange: "this.form.submit();" %>
-                                            <i class="fas fa-upload"></i>&nbsp;&nbsp;&nbsp; Upload Avatar
-                                        </label>
-                                      </div>
+                                        <div class="file">
+                                            <label class="button is-primary is-outlined is-fullwidth">
+                                                <%= f.file_field :avatar, class: "file-input", onchange: "this.form.submit();" %>
+                                                <i class="fas fa-upload"></i>&nbsp;&nbsp;&nbsp; Upload Avatar
+                                            </label>
+                                        </div>
                                     <% end %>
-
+                                </div>
                                 <hr class="h-10">
                                 
                                 <!-- Member -->
-                                <article class="media"></article>
+                                <article class="media">
                                     <div class="media-content">Member since</div>
-                                    <div class="class media-right">
+                                    <div class="media-right">
                                         <strong><%= current_user.created_at.strftime('%b %Y') %></strong>
                                     </div>
+                                </article>
                                 <hr class="h-10">
                                 
                                 <!-- From -->
-                                <article>     
+                                <article>
                                     <div class="media">
                                         <div class="media-content">From</div>
-                                        <div class="class media-right">
+                                        <div class="media-right">
                                             <strong><%= current_user.from %></strong> <i class="toggle far fa-edit" aria-controls="user-from"></i>
                                         </div>
                                     </div>
@@ -52,35 +54,55 @@
                                     <div class="content">
                                         <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-from', class: 'is-hidden'} do |f| %>
                                             <div class="field">
-                                                <%= f.text_field :from, autofocus: true, autocomplete: 'form', class: 'input' %>
+                                                <%= f.text_field :from, autofocus: true, autocomplete: 'form', class: 'input'%>
                                             </div>
-                                            <a class="toggle button islight" aria-controls="user-from">Cancel</a>
+                                            <a class="toggle button is-light" aria-controls="user-from">Cancel</a>
                                             <%= f.submit "Save", class: "button is-danger" %>
                                         <% end %>
                                     </div>
 
-                                </article>                          
+                                </article>                                
                                 <hr class="h-10">
 
                                 <!-- Online Status -->
                                 <article>
                                     <div class="media">
                                         <div class="media-content">Online Status</div>
-                                        <div class="class media-right">
-                                            <strong><% if current_user.status %>Online <% else %> Offline <% end %></strong><i class="toggle far fa-edit" aria-controls="user-status"></i>
-                                        </div> 
+                                        <div class="media-right">
+                                            <strong><% if current_user.status %> Online <% else %> Offline <% end %></strong> <i class="toggle far fa-edit" aria-controls="user-status"></i>
+                                        </div>
                                     </div>
+
                                     <div class="content">
                                         <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-status', class: 'is-hidden'} do |f| %>
                                             <div class="field">
-                                                <%= f.select(:status, options_for_select(["Online", true], ["Offline", false]), {}, {class: "select is-fullwidth"}) %>
+                                                <%= f.select(:status, options_for_select([["Online", true], ["Offline", false]]), {}, {class: "select is-fullwidth"}) %>
                                             </div>
-                                            <a class="toggle button islight" aria-controls="user-status">Cancel</a>
+                                            <a class="toggle button is-light" aria-controls="user-status">Cancel</a>
                                             <%= f.submit "Save", class: "button is-danger" %>
                                         <% end %>
                                     </div>
-
                                 </article>
+                                
+                                <!-- Subscription -->
+                                <% if @subscription.present? %>
+                                    <hr class="h-10">
+                                    <article>
+                                        <div class="media">
+                                            <div class="media-content">Subscription</div>
+                                            <div class="media-right">
+                                                <strong><% if @plan %> <%= @plan.nickname %> <% end %></strong> <i class="toggle far fa-edit" aria-controls="user-subscription"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="content">
+                                            <%= form_with url: remove_subscription_path, method: :delete, html: { id: 'user-subscription', class: 'is-hidden' } do |f| %>
+                                                <small>Expire at: <%= @subscription.expired_at %></small>                 
+                                                <%= f.submit "Cancel My Subscription", class: "button is-danger is-fullwidth m-t-20" %>
+                                            <% end %>
+                                        </div>
+                                    </article>
+                                <% end %>
                             </div>
                         </div>
                     </div>
@@ -100,7 +122,7 @@
                                                 <%= current_user.about %>
                                             </p>
                                         </div>
-                                        <div class="class media-right">
+                                        <div class="media-right">
                                             <i class="toggle far fa-edit" aria-controls="user-about"></i>
                                         </div>
                                     </div>
@@ -108,9 +130,9 @@
                                     <div class="content">
                                         <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-about', class: 'is-hidden'} do |f| %>
                                             <div class="field">
-                                                <%= f.text_area :about, autofocus: true, autocomplete: 'form', class: 'input' %>
+                                                <%= f.text_area :about, autofocus: true, autocomplete: 'form', class: 'input'%>
                                             </div>
-                                            <a class="toggle button islight" aria-controls="user-about">Cancel</a>
+                                            <a class="toggle button is-light" aria-controls="user-about">Cancel</a>
                                             <%= f.submit "Save", class: "button is-danger" %>
                                         <% end %>
                                     </div>
@@ -127,7 +149,7 @@
                                                 <%= current_user.language %>
                                             </p>
                                         </div>
-                                        <div class="class media-right">
+                                        <div class="media-right">
                                             <i class="toggle far fa-edit" aria-controls="user-language"></i>
                                         </div>
                                     </div>
@@ -135,12 +157,13 @@
                                     <div class="content">
                                         <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-language', class: 'is-hidden'} do |f| %>
                                             <div class="field">
-                                                <%= f.text_field :language, autofocus: true, autocomplete: 'form', class: 'input' %>
+                                                <%= f.text_field :language, autofocus: true, autocomplete: 'form', class: 'input'%>
                                             </div>
-                                            <a class="toggle button islight" aria-controls="user-language">Cancel</a>
+                                            <a class="toggle button is-light" aria-controls="user-language">Cancel</a>
                                             <%= f.submit "Save", class: "button is-danger" %>
                                         <% end %>
                                     </div>
+
                                 </article>
                                 <hr class="h-10">
                                 
@@ -149,7 +172,7 @@
                                     <div class="content">
                                         <p>
                                             <strong>Linked Account</strong><br/>
-                                            <% if current_user.uid %>
+                                            <% if current_user.provider %>
                                                 <span class="has-text-success">Facebook verified</span>
                                             <% else %>
                                                 <%= link_to 'Connect to Facebook', user_facebook_omniauth_authorize_path, class: "has-text-danger" %>
@@ -157,23 +180,53 @@
                                         </p>
                                     </div>
                                 </article>
+                                <hr class="h-10">
+
+                                <!-- Mobile Number -->
+                                <article>
+                                    <div class="media">
+                                        <div class="media-content">
+                                            <p>
+                                                <strong>Mobile Number</strong>
+                                                <br>
+                                                <%= current_user.hidden_phone %>
+                                            </p>
+                                        </div>
+                                        <div class="media-right">
+                                            <i class="toggle far fa-edit" aria-controls="user-phone"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="content">
+                                        <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-phone', class: 'is-hidden'} do |f| %>
+                                            <div class="field">
+                                                <%= f.text_field :phone, autofocus: true, autocomplete: 'form', class: 'input', id: 'phone_number'%>
+                                            </div>
+                                            <a class="toggle button is-light" aria-controls="user-phone">Cancel</a>
+                                            <%= link_to 'Add & Verify', "javascript:verifyPhone()", class: "button is-danger" %>
+                                        <% end %>
+                                    </div>
+                                </article>
+
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+
             <!-- RIGHT SIDE -->
             <div class="column">
                 <div class="columns is-multiline">
 
                     <!-- Create New Gig -->
                     <div class="column is-one-third has-text-centered">
-                        <%= link_to new_gig_path do  %>
+                        <%= link_to new_gig_path do %>
                             <div class="card">
 
                                 <div class="card-image card-content is-horizontal-center is-flex ">
                                     <figure class="image is-128x128 ">
-                                        <%= image_tag 'brand/icon_add.png' %>
+                                        <%= image_tag 'icon_add.png' %>
                                     </figure>
                                 </div>
 
@@ -185,8 +238,10 @@
                         <% end %>
                     </div>
 
+
                     <!-- Sample Gig -->
                     <% current_user.gigs.each do |gig| %>
+
                         <div class="column is-one-third">
                             <div class="card">
 
@@ -201,7 +256,8 @@
                                 <div class="card-content p-t-5 p-b-5">
                                     <p class="subtitle is-6 m-b-5"><%= link_to gig.title, gig_path(gig) %></p>
                                     <span class="star-review"><i class="fa fa-star"></i>
-                                        4.8 <span class="has-text-primary">(23)</span>
+                                        <%= gig.average_rating %>
+                                        <span class="has-text-primary">(<%= gig.reviews.count %>)</span>
                                     </span>                                        
                                 </div>
 
@@ -211,21 +267,93 @@
                                     <a class="has-text-danger is-block card-footer-item has-text-right">
                                         <% if !basic_price.nil? %>
                                             <span class="small-title">STARTING AT</span> 
-                                            <strong>$<%= basic_price.price %></strong> 
-                                        
+                                            <strong>$<%= basic_price.price %></strong>                                            
                                         <% else %>
                                             <strong>
                                                 <span class="small-title has-text-dark">NO PRICING YET</span>
                                             </strong>
-                                        <% end %>                                           
+                                        <% end %>
                                     </a>
                                 </footer>  
+                                
                             </div>
                         </div>
+
                     <% end %>
+                    
                 </div>
             </div>
             
         </div>
     </div>
 </section>
+
+<!-- HTTPS required. HTTP will give a 403 forbidden response -->
+<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<script>
+  // initialize Account Kit with CSRF protection
+  AccountKit_OnInteractive = function(){
+    AccountKit.init(
+      {
+        appId:"1029929950529170", 
+        state:"freelancer", 
+        version:"v1.1",
+        debug: true
+      }
+    );
+  };
+
+  // login callback
+  function loginCallback(response) {
+    if (response.status === "PARTIALLY_AUTHENTICATED") {
+      var code = response.code;
+      $.ajax({
+          type: "POST",
+          url: "/users/edit_phone",
+          data: { code: response.code },
+          success: (data) => {
+              if (data.success) {
+                  showNotification('success', 'Update Phone Number successfully')
+                  location.reload()
+              } else {
+                  showNotification('error', 'Invalid Phone Number')
+              }
+          },
+          error: (data) => {
+              showNotification('error', 'Invalid Phone Number')
+          }
+      });
+      // Send code to server to exchange for access token
+    }
+    else if (response.status === "NOT_AUTHENTICATED") {
+      // handle authentication failure
+      showNotification('error', 'Not Authenticated')
+    }
+    else if (response.status === "BAD_PARAMS") {
+      // handle bad parameters
+      showNotification('error', 'Bad Parameters')
+    }
+  }
+
+  // phone form submission handler
+  function verifyPhone() {
+    var phoneNumber = document.getElementById("phone_number").value;
+    AccountKit.login(
+      'PHONE', 
+      {phoneNumber: phoneNumber}, // will use default values if not specified
+      loginCallback
+    );
+  }
+
+  function showNotification(type, message) {
+      new Noty({
+          type: type,
+          layout: 'topRight',
+          timeout: 2000,
+          theme: 'sunset',
+          text: message
+      });
+  }
+</script>
+
+    

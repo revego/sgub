@@ -1,11 +1,11 @@
-<section class="hero is-light is-fullheight">
+<section class="hero is-primary is-fullheight">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-6-table is-6-desktop is-6-widescreen">
           <div class="box">
             
-            <div class="field has-centered">
+            <div class="field has-text-centered">
               <strong>Log in</strong>
             </div>
 
@@ -28,11 +28,11 @@
               <% end %>
 
               <div class="field">
-                <%= f.submit "Log in", class: "button is-dark is-fullwidth m-t-10 m-b-10" %>
+                <%= f.submit "Log in", class: "button is-danger is-fullwidth m-t-10 m-b-10" %>
               </div>
             <% end %>
 
-            <%= link_to 'Sign in with Facebook', user_facebook_omniauth_authorize_path, class: 'button is-light is-fullwidth' %>
+            <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: "button is-primary is-fullwidth" %>
 
             <%= render "devise/shared/links" %>
 
@@ -42,7 +42,3 @@
     </div>
   </div>
 </section>
-
-
-
-

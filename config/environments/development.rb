@@ -62,5 +62,15 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.webpacker.check_yarn_integrity = false
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "demo_merchant_api1.leotrieu2.com",
+      password: "7PX8WU7D5WME8W8E",
+      signature: "A6hGfn.X9iOurjK.glDVzcxH2SJpAOXj82I3VAV9xBASSsntR44hYJ6p"
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
+
+  config.hosts = nil
 end

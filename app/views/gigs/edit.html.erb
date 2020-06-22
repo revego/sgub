@@ -37,11 +37,13 @@
       <!-- FORM TO CREATE A NEW GIG HERE-->
       <%= form_for @gig, html: {class: "steps-content m-l-100 m-r-100"} do |f| %>
         <%= hidden_field_tag 'step', @step %>
+        
         <%= render 'step1', f: f %>
         <%= render 'step2', f: f %>
         <%= render 'step3', f: f %>
         <%= render 'step4', f: f %>
         <%= render 'step5', f: f %>
+
       <% end %>
     </div>
   </div>

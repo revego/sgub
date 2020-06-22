@@ -7,11 +7,16 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("raty-js")
 
 window.Noty = require("noty")
 window.Dropzone = require("dropzone")
 window.BulmaCarousel = require("bulma-extensions/bulma-carousel/dist/js/bulma-carousel")
-    
+
+window.Calendar = require("@fullcalendar/core").Calendar;
+window.DayGridPlugin = require("@fullcalendar/daygrid").default;
+window.ListPlugin = require("@fullcalendar/list").default;
+
 $(document).on('turbolinks:load', () => {
     $('.toggle').on('click', (e) => {
         e.stopPropagation();

@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
 <%= render 'shared/categories' %>
 
 <section class="section">
@@ -9,7 +13,7 @@
                 <div class="columns is-multiline">
 
                     <!-- Carousel -->
-                     <div class="column is-full">   
+                    <div class="column is-full">   
                         <div class="card">
                             <div class="card-content">
                                 <div class="content">
@@ -33,18 +37,18 @@
                     </div>
 
                     <!-- About Section -->
-                    <div class="column">     
+                    <div class="column">
                         <div class="card">
                             <div class="card-content">
                                 <article class="media">
                                     <div class="media-content">
-                                        <p><strong>About this Gig</strong></p>
+                                        <p><strong>About This Gig</strong></p>
                                         <hr>
                                         <%= @gig.description %>
                                     </div>
                                 </article>
                             </div>
-                        </div>                   
+                        </div>                        
                     </div>
                     
                 </div>
@@ -60,7 +64,7 @@
                         <div class="tabs is-fullwidth" id="tabs">
                             <ul>
                                 <% Pricing.pricing_types.each do |key, value| %>
-                                    <li class="tab <%= 'is-active'  if value == 0 %> " 
+                                    <li class="tab <%= 'is-active' if value == 0 %> " 
                                                 data-tab="<%= key %>" style="<%= 'display: none' if @gig.has_single_pricing && value != 0 %>">
                                         <a><%= key.capitalize %></a>
                                     </li>
@@ -88,14 +92,12 @@
                                                     <strong><i class="far fa-clock"></i> <%= pluralize(p.delivery_time, 'Day') %> Delivery</strong>                                                    
                                                 </p>
                                             </div>
-                                             <% if (user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
-                                                <%= form_for([@gig, @gig.orders.new]) do |f| %>
-                                                    <%= hidden_field_tag 'pricing_type', p.pricing_type %>
-                                                    <%= f.submit "Continue ($#{p.price})", class: "button is-fullwidth is-danger", data: {confirm: "Are you sure?"} %>
-                                                <% end %>
+                                            <% if (!user_signed_in? && @gig.active) || (user_signed_in? && @gig.active && @gig.user_id != current_user.id) %>
+                                                <%= link_to "Continue ($#{p.price})", checkout_path(id: @gig.id, pricing_type: p.pricing_type), class: "button is-fullwidth is-danger" %>
                                             <% else %>
                                                 <button class="button is-fullwidth is-danger" disabled>Not Available</button>  
                                             <% end %>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -108,13 +110,15 @@
                     <div class="column">
                         <div class="card">
                             <div class="card-content is-horizontal-center is-flex">
-                                <figure class="image is-96x96">
-                                    <%= image_tag avatar_url(@gig.user), class: "is-rounded" %>
-                                </figure>
+                                <%= link_to users_path(@gig.user) do %>
+                                    <figure class="image is-96x96">
+                                        <%= image_tag avatar_url(@gig.user), class: "is-rounded" %>
+                                    </figure>
+                                <% end %>
                             </div>
                             <div class="card-content f-15">
                                 <div class="content has-text-centered">
-                                    <p class="title is-5"><%= @gig.user.full_name%></p>
+                                    <p class="title is-5"><%= @gig.user.full_name %></p>
                                     <button class="button is-black is-outlined is-fullwidth">Contact me</button>
                                 </div>
                                 <article class="media">
@@ -166,4 +170,5 @@
             $('#tab-' + type).show();
         }) 
     })
+
 </script>

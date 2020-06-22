@@ -1,0 +1,15 @@
+current directory: /Users/apollo/Downloads/myfreelancer/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.4/ext/bootsnap
+/Users/apollo/.rbenv/versions/2.6.2/bin/ruby -I /Users/apollo/.rbenv/versions/2.6.2/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200528-20898-u9y6kj.rb extconf.rb
+creating Makefile
+
+current directory: /Users/apollo/Downloads/myfreelancer/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.4/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/apollo/Downloads/myfreelancer/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.4/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/apollo/Downloads/myfreelancer/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.4/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20200528-20898-yvlwgz/bootsnap

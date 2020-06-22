@@ -86,17 +86,6 @@ class GigsController < ApplicationController
 
   def upload_photo
     @gig.photos.attach(params[:file])
-    render json: {success: true}
-  end
-
-  def delete_photo
-    @image = ActiveStorage::Attachment.find(params[:photo_id])
-    @image.purge
-    redirect_to edit_gig_path(@gig, step: 4)
-  end
-
-  def upload_photo
-    @gig.photos.attach(params[:file])
     render json: { success: true }
   end
 
@@ -104,6 +93,26 @@ class GigsController < ApplicationController
     @image = ActiveStorage::Attachment.find(params[:photo_id])
     @image.purge
     redirect_to edit_gig_path(@gig, step: 4)
+  end
+
+  def checkout
+
+    subscription = Subscription.find_by_user_id(current_user.id)
+    if subscription.present? && subscription.success?
+      plan = Stripe::Plan.retrieve(subscription.plan_id)
+      @rate =  plan.metadata.commission.to_f/100
+    else
+      @rate = 10.0/100
+    end
+
+    if current_user.stripe_id
+      @stripe_customer = Stripe::Customer.retrieve(current_user.stripe_id)
+
+      @gig = Gig.find(params[:id])
+      @pricing = @gig.pricings.find_by(pricing_type: params[:pricing_type])
+    else
+      redirect_to settings_payment_path, alert: "Please add your card first"
+    end
   end
 
   private
