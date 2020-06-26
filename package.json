@@ -20,7 +20,7 @@
     "trix": "^1.0.0",
     "turbolinks": "^5.2.0"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "devDependencies": {
     "release-it": "^13.6.2",
     "webpack-dev-server": "^3.7.1"
