@@ -1,11 +1,12 @@
 <section class="section">
-    <div class="container">
+    <div class="table-container">
         <p class="title">My Offers</p>
         <table class="table is-fullwidth">
             <thead>
                 <tr>
                     <th>Date</th>
                     <th>Request Title</th>
+                    <th>Buyer</th>
                     <th>Budget</th>
                     <th>Offer Amount</th>
                     <th>Deliver in</th>
@@ -24,8 +25,13 @@
                         <td>
                             <%= link_to o.request.title, request_path(o.request) %>
                         </td>
-                        <td>$<%= o.request.budget %></td>
-                        <td>$<%= o.amount %></td>
+                        <td>
+	                        <figure class="image is-24x24 avatar <%= current_user.status ? "online" : "offline" %>">
+                            	<%= image_tag avatar_url(o.request.user), class: "is-rounded" %>
+							</figure>
+                        </td>
+                        <td>€<%= o.request.budget %></td>
+                        <td>€<%= o.amount %></td>
                         <td><%= pluralize(o.days, 'day') %></td>
                         <td>
                             <span class="tag <%= 'is-warning' if o.pending? %> 

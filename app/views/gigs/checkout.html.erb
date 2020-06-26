@@ -27,7 +27,7 @@
                                         <% end %>
                                         <div class="control m-t-20">
                                             <%= radio_button_tag 'payment', 'system' %>
-                                            <span class="m-l-10">Your System Wallet ($<strong class="has-text-success"><%= current_user.wallet %></strong>)</span>
+                                            <span class="m-l-10">Your System Wallet (€<strong class="has-text-success"><%= current_user.wallet %></strong>)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                             Subtotal
                                         </div>
                                         <div class="media-right">
-                                            $<%= '%.2f' % @pricing.price %>
+                                            €<%= '%.2f' % @pricing.price %>
                                         </div>
                                     </article>
 
@@ -73,7 +73,7 @@
                                             Service fee (<%= (@rate * 100).to_i %>%)
                                         </div>
                                         <div class="media-right">
-                                            $<%= '%.2f' % (@pricing.price * @rate) %>
+                                            €<%= '%.2f' % (@pricing.price * @rate) %>
                                         </div>
                                     </article>
 
@@ -82,7 +82,7 @@
                                             Total
                                         </div>
                                         <div class="media-right">
-                                            $<%= '%.2f' % (@pricing.price * (@rate + 1)) %>
+                                            €<%= '%.2f' % (@pricing.price * (@rate + 1)) %>
                                         </div>
                                     </article>
 

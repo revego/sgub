@@ -80,7 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: freelance_production
+  database: freelance_production1
   username: freelancer
   password: <%= ENV['SECRET_KEY_BASE'] %>
   host: 192.168.1.48

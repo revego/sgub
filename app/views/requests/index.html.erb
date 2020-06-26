@@ -10,6 +10,7 @@
                 <tr>
                     <td>Date</td>
                     <td>Request</td>
+                    <td>Avatar</td>
                     <td class="has-text-right">Offers</td>
                     <td class="has-text-right">Action</td>
                 </tr>
@@ -24,6 +25,11 @@
                     <tr>
                         <td><%= r.created_at.strftime('%d, %b %Y') %></td>
                         <td><%= link_to r.title, request_path(r) %></td>
+                        <td>
+                            <figure class="image is-24x24 avatar <%= current_user.status ? "online" : "offline" %>">
+                            	<%= image_tag avatar_url(r.user), class: "is-rounded" %>
+                            </figure>
+                        </td>
                         <td class="has-text-right">
                             <%= link_to r.offers.count, request_offers_path(r) %>
                         </td>

@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="field is-pulled-left">
-                                <div class="file is-warning has-name">
+                                <div class="file is-dark has-name">
                                     <label class="file-label">
                                         <%= f.file_field :attachment_file, class: "file-input" %>
                                         <span class="file-cta">
@@ -60,11 +60,19 @@
                     <div class="card-content">
                         <p>
                             <strong><%= @order.title %></strong>
-                            <strong class="title is-4 is-pulled-right has-text-success">$<%= @order.amount %></strong>
+                            <strong class="title is-4 is-pulled-right has-text-success">€<%= @order.amount %></strong>
                         </p>
                         <br>
                         <small>
                             <p>Seller: <%= @order.seller_name %></p>
+                                <figure class="image is-24x24">
+                            		<%= image_tag avatar_url(@order.seller), class: "is-rounded" %>
+								</figure>
+                            <p>Buyer: <%= @order.buyer_name %> 
+                            	<figure class="image is-24x24">
+                            		<%= image_tag avatar_url(@order.buyer), class: "is-rounded" %>
+								</figure>
+							</p>
                             <br>
                             <p>Order: <%= @order.id %></p>
                             <br>

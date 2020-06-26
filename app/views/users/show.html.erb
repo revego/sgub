@@ -151,10 +151,10 @@
                                 <footer class="card-footer">
                                     <% basic_price = gig.pricings.find{ |p| p.pricing_type == 'basic' } %>
 
-                                    <a class="has-text-danger is-block card-footer-item has-text-right">
+                                    <a class="has-text-grey-light is-size-6 is-block card-footer-item has-text-left">
                                         <% if !basic_price.nil? %>
-                                            <span class="small-title">STARTING AT</span> 
-                                            <strong>$<%= basic_price.price %></strong>                                            
+                                            <span class="small-title is-size-7">STARTING AT</span> 
+                                            <strong class="has-text-dark">€<%= basic_price.price %></strong>                                            
                                         <% else %>
                                             <strong>
                                                 <span class="small-title has-text-dark">NO PRICING YET</span>

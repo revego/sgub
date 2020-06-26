@@ -24,7 +24,7 @@
                                     <p class="title is-5"><%= current_user.full_name %></p>
                                     <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post do |f| %>
                                         <div class="file">
-                                            <label class="button is-primary is-outlined is-fullwidth">
+                                            <label class="button is-dark is-outlined is-fullwidth">
                                                 <%= f.file_field :avatar, class: "file-input", onchange: "this.form.submit();" %>
                                                 <i class="fas fa-upload"></i>&nbsp;&nbsp;&nbsp; Upload Avatar
                                             </label>
@@ -254,7 +254,7 @@
                                 </div>
 
                                 <div class="card-content p-t-5 p-b-5">
-                                    <p class="subtitle is-6 m-b-5"><%= link_to gig.title, gig_path(gig) %></p>
+                                    <p class="subtitle is-6 m-b-5"><%= link_to gig.title.truncate(20), gig_path(gig) %></p>
                                     <span class="star-review"><i class="fa fa-star"></i>
                                         <%= gig.average_rating %>
                                         <span class="has-text-primary">(<%= gig.reviews.count %>)</span>
@@ -266,8 +266,8 @@
 
                                     <a class="has-text-danger is-block card-footer-item has-text-right">
                                         <% if !basic_price.nil? %>
-                                            <span class="small-title">STARTING AT</span> 
-                                            <strong>$<%= basic_price.price %></strong>                                            
+                                            <span class="small-title has-text-grey-light is-size-6">STARTING AT</span> 
+                                            <strong class="has-text-dark">€<%= basic_price.price %></strong>                                            
                                         <% else %>
                                             <strong>
                                                 <span class="small-title has-text-dark">NO PRICING YET</span>
