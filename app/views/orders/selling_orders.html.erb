@@ -25,7 +25,7 @@
                         <td><%= o.created_at.strftime('%d %b %Y') %></td>
                         <td><%= o.buyer_name %></td>
                         <td>
-	                        <figure class="image is-24x24">
+	                        <figure class="image is-24x24 avatar <%= o.buyer.status ? "online" : "offline" %>">
                             	<%= image_tag avatar_url(o.buyer), class: "is-rounded" %>
                             </figure>
                         </td>

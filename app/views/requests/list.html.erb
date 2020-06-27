@@ -40,7 +40,7 @@
                             <tr>
                                 <td><%= r.created_at.strftime('%d, %b %Y') %></td>
                                 <td>
-                                    <figure class="image is-48x48 avatar <%= current_user.status ? "online" : "offline" %>">
+                                    <figure class="image is-48x48 avatar <%= r.user.status ? "online" : "offline" %>">
                                         <%= image_tag avatar_url(r.user), class: "is-rounded" %>
                                     </figure>
                                 </td>

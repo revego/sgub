@@ -54,7 +54,7 @@
                                         <!-- Buyer Avatar -->
                                         <div class="column">
                                             <div class="card-content is-horizontal-center is-flex">
-                                                <figure class="image is-96x96 m-r-5 avatar <%= current_user.status ? "online" : "offline" %>">
+                                                <figure class="image is-96x96 m-r-5 avatar <%= @request.user.status ? "online" : "offline" %>">
                                                     <%= image_tag avatar_url(@request.user), class: "is-rounded" %>
                                                 </figure>
                                             </div>

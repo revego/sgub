@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/earnings', to: 'users#earnings', as: 'earnings'
   get '/conversations', to: 'conversations#list', as: "conversations"
   get '/conversations/:id', to: 'conversations#show', as: "conversation_detail"
+  get '/terms', to: 'pages#terms'
+  get '/privacy', to: 'pages#privacy'
 
   post '/users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'

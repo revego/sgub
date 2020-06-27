@@ -15,7 +15,7 @@
                                     <div class="message-body">
                                         <div class="media">
                                             <div class="media-left">
-                                                <figure class="image is-32x32 m-r-5 avatar online">
+                                                <figure class="image is-32x32 m-r-5 avatar <%= c.receiver.status ? "online" : "offline" %>">
                                                     <%= image_tag avatar_url(@client), class: "is-rounded" %>
                                                 </figure>
                                             </div>                                
@@ -43,7 +43,7 @@
             <!-- Receiver Profile  -->
             <article class="media">
                 <div class="media-left">
-                    <figure class="image is-64x64">
+                    <figure class="image is-64x64 avatar <%= @conversation.receiver.status ? "online" : "offline" %>">
                         <%= image_tag avatar_url(@user), class: "is-rounded" %>
                     </figure>
                 </div>

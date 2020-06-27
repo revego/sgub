@@ -26,7 +26,7 @@
                             <%= link_to o.request.title, request_path(o.request) %>
                         </td>
                         <td>
-	                        <figure class="image is-24x24 avatar <%= current_user.status ? "online" : "offline" %>">
+	                        <figure class="image is-24x24 avatar <%= o.request.user.status ? "online" : "offline" %>">
                             	<%= image_tag avatar_url(o.request.user), class: "is-rounded" %>
 							</figure>
                         </td>

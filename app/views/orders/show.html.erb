@@ -65,7 +65,7 @@
                         <br>
                         <small>
                             <p>Seller: <%= @order.seller_name %></p>
-                                <figure class="image is-24x24">
+                                <figure class="image is-24x24 avatar <%= @order.seller.status ? "online" : "offline" %>">
                             		<%= image_tag avatar_url(@order.seller), class: "is-rounded" %>
 								</figure>
                             <p>Buyer: <%= @order.buyer_name %> 

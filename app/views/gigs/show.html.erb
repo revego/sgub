@@ -119,7 +119,7 @@
                             <div class="card-content f-15">
                                 <div class="content has-text-centered">
                                     <p class="title is-5"><%= @gig.user.full_name %></p>
-                                    <button class="button is-black is-outlined is-fullwidth">Contact me</button>
+                                    <button class="button is-black is-outlined is-fullwidth toggle-contact">Contact me</button>
                                 </div>
                                 <article class="media">
                                     <div class="media-content">
@@ -153,6 +153,7 @@
     </div>
 </section>
 
+
 <script>
     BulmaCarousel.attach('#carousel-photo', {
         slidesToScroll: 1,
@@ -171,4 +172,16 @@
         }) 
     })
 
+</script>
+
+<script>
+    var toggle_modals = $('.toggle-contact');
+    if (toggle_modals) {
+        toggle_modals.on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            var form = document.getElementById('contact-form');
+            form.classList.toggle('is-active');
+        });
+    }
 </script>

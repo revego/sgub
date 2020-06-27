@@ -1,6 +1,6 @@
 <article class="media">
     <figure class="media-left">
-        <p class="image is-64x64">
+        <p class="image is-64x64 avatar <%= comment.user.status ? "online" : "offline" %>">
             <%= image_tag avatar_url(comment.user), class: "is-rounded" %>
         </p>
     </figure>
