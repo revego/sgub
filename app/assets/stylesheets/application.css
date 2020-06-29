@@ -17,6 +17,8 @@
 @import 'bulma/bulma.css';
 @import 'bulma-extensions.css';
 @import 'bulma-extensions/bulma-carousel/dist/css/bulma-carousel.min.css';
+
+@import	'bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css';
 @import 'noty/lib/noty.css';
 @import 'noty/lib/themes/sunset.css';
 @import 'dropzone/dist/basic.css';
