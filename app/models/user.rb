@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable
+         :omniauthable, omniauth_providers: [:facebook, :github, :google_oauth2, :twitter]
 
   validates :full_name, presence: true, length: {maximum: 50}
 

@@ -12,7 +12,7 @@
 
                             <!-- Avatar -->
                             <div class="card-content is-horizontal-center is-flex">
-                                <figure class="image is-128x128">
+                                <figure class="image is-128x128 avatar <%= @user.status ? "online" : "offline" %>">
                                     <%= image_tag avatar_url(@user), class: "is-rounded" %>
                                 </figure>
                             </div>
@@ -93,9 +93,9 @@
                                         <p>
                                             <strong>Linked Account</strong><br/>
                                             <% if @user.provider %>
-                                                <span class="has-text-success">Facebook verified</span>
+                                                <span class="has-text-success"><%= current_user.provider %> verified</span>
                                             <% else %>
-                                                <span class="has-text-danger">Facebook unverified</span>
+                                                <span class="has-text-danger"><%= current_user.provider %> unverified</span>
                                             <% end %>
                                         </p>
                                     </div>
@@ -180,7 +180,7 @@
                         <% @reviews.each do |r| %>
                             <article class="media">
                                 <figure class="media-left">
-                                    <p class="image is-64x64">
+                                    <p class="image is-64x64 avatar <%= r.buyer.status ? "online" : "offline" %>">
                                         <%= image_tag avatar_url(r.buyer), class: "is-rounded" %>
                                     </p>
                                 </figure>
