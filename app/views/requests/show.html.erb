@@ -163,7 +163,7 @@
                 </div>   
                 <div class="column">
                     <%= form_with model: Message.new do |f| %>
-                        <%= f.hidden_field :receiver_id, value: @request.user.id %>
+                        <%= f.hidden_field :receiver_id, value: @request	.user.id %>
                         <div class="card-content">
                             <div class="field">
                                 <div class="control">

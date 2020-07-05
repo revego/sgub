@@ -15,7 +15,7 @@
                                     <div class="message-body">
                                         <div class="media">
                                             <div class="media-left">
-                                                <figure class="image is-32x32 m-r-5 avatar <%= c.sender.status ? "online" : "offline" %>">
+                                                <figure class="image is-32x32 m-r-5 avatar <%= c.receiver.status ? "online" : "offline" %>">
                                                     <%= image_tag avatar_url(@client), class: "is-rounded" %>
                                                 </figure>
                                             </div>                                
@@ -43,7 +43,7 @@
             <!-- Receiver Profile  -->
             <article class="media">
                 <div class="media-left">
-                    <figure class="image is-64x64 avatar <%= @conversation.sender.status ? "online" : "offline" %>">
+                    <figure class="image is-64x64 avatar <%= @conversation.receiver.status ? "online" : "offline" %>">
                         <%= image_tag avatar_url(@user), class: "is-rounded" %>
                     </figure>
                 </div>
@@ -57,7 +57,7 @@
             </article>
             <hr>
 
-            <!-- Messages  -->
+			<!-- Messages  -->
             <div class="columns is-multiline" id="message_list">
                 <% @messages.each do |m| %>
                     <%= render 'conversations/message', m: m, user: current_user %>
@@ -78,6 +78,28 @@
                     </div>
                 <% end %>
             </div>
+            
+            <!-- Messages  -->
+            <!--div class="columns is-multiline" id="message_list">
+                <% @messages.each do |m| %>
+                    <%= render 'conversations/message', m: m, user: current_user %>
+                <% end %>
+            </div-->
+
+            <!-- Send Message  -->
+            <!--div class="column m-t-25">
+                <%= form_with model: Message.new, id: "new_message" do |f| %>
+                    <%= f.hidden_field :receiver_id, value: @user.id %>
+                    <div class="field has-addons">
+                        <div class="control" style="width: 100%">
+                            <%= f.text_field :content, class: "input", placeholder: "Type a message..." %>
+                        </div>
+                        <div class="control">
+                            <%= f.submit "Send", class: "button is-primary" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div-->
 
         </div>
     </div>

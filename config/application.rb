@@ -10,6 +10,11 @@ module Freelancer
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    
+    # config.action_cable.mount_path = '/websocket'
+    
+    
+    #ActionCable.server.config.logger = Logger.new(nil)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   delete '/users/remove_subscription', to: 'users#remove_subscription', as: 'remove_subscription'
 
   mount ActionCable.server => '/cable'
+  ##mount ActionCable.server, at: '/cable'
 
   resources :gigs do
     member do

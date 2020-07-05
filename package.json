@@ -27,6 +27,7 @@
     "webpack-dev-server": "^3.7.1"
   },
   "scripts": {
-    "release": "release-it"
+    "release": "release-it",
+    "postinstall": "cp node_modules/@rails/actioncable/app/assets/javascripts/action_cable.js app/javascript"
   }
 }

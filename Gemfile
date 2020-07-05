@@ -42,6 +42,7 @@ group :production do
   gem 'omniauth-github'
   # Use Redis adapter to run Action Cable in production
   gem 'redis', '~> 4.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
 group :development do

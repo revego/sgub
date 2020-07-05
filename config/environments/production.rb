@@ -39,9 +39,16 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Mount Action Cable outside main process or domain.
-  # config.action_cable.mount_path = '/cable'
-  # config.action_cable.url = 'wss://sgub.it/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://sgub.it', /http:\/\/sgub.*/ ]
+  # config.action_cable.mount_path = nil
+  config.action_cable.url = 'ws://www.sgub.it/cable'
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  #config.action_cable.allowed_request_origins = [ 'https://sgub.it', /http:\/\/sgub.*/ ]
+  # ope for any connection
+  # config.action_cable.disable_request_forgery_protection = true
+  # pool configuration
+  # config.action_cable.worker_pool_size = 4
+  config.web_socket_server_url = "ws://www.sgub.it/cable" 
+  
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -66,7 +73,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   
-  config.action_mailer.default_url_options = { :host => "www.sgub.it" }
+  # config.action_mailer.default_url_options = { :host => "www.sgub.it" }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
