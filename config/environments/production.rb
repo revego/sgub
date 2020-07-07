@@ -40,14 +40,16 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'ws://www.sgub.it/cable'
-  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
-  #config.action_cable.allowed_request_origins = [ 'https://sgub.it', /http:\/\/sgub.*/ ]
+  config.action_cable.url = 'https://www.sgub.it/cable'
+  # config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  # config.action_cable.allowed_request_origins = [ 'https://sgub.it', /http:\/\/sgub.*/ ]
   # ope for any connection
   # config.action_cable.disable_request_forgery_protection = true
   # pool configuration
   # config.action_cable.worker_pool_size = 4
-  config.web_socket_server_url = "ws://www.sgub.it/cable" 
+  # config.web_socket_server_url = "ws://www.sgub.it/cable"
+  config.action_cable.disable_request_forgery_protection = true
+ 
   
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
@@ -121,4 +123,7 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  
 end
+
+

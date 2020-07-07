@@ -1,0 +1,2 @@
+#!/bin/sh
+exec bundle exec passenger start -p YOUR_ACTION_CABLE_PORT_NUMBER_HERE -R cable/config.ru --force-max-concurrent-requests-per-process 0
