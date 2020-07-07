@@ -1,5 +1,5 @@
 current directory: /usr/share/freelancer/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.2/ext/websocket-driver
-/usr/local/bin/ruby -I /usr/local/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200703-20596-1nhbnvs.rb extconf.rb
+/usr/local/bin/ruby -I /usr/local/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200707-2241-d1qeuy.rb extconf.rb
 creating Makefile
 
 current directory: /usr/share/freelancer/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.2/ext/websocket-driver
@@ -12,4 +12,4 @@ linking shared-object websocket_mask.so
 
 current directory: /usr/share/freelancer/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.2/ext/websocket-driver
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20200703-20596-155ul9i
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20200707-2241-h3gwp0

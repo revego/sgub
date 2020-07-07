@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
   s.email = ["sam@sampohlenz.com".freeze]
   s.homepage = "https://www.trestle.io".freeze
   s.licenses = ["LGPL-3.0".freeze]
-  s.rubygems_version = "3.1.3".freeze
+  s.rubygems_version = "3.1.4".freeze
   s.summary = "Authentication plugin for the Trestle admin framework".freeze
 
-  s.installed_by_version = "3.1.3" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

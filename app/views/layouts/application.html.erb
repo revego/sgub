@@ -12,9 +12,10 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-badge@1.0.1/dist/bulma-badge.min.css" type="text/css">
+    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.4/css/bulma.min.css" type="text/css"-->
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/" async></script>
     
     <% if content_for?(:head) %>
       <%= yield(:head) %>

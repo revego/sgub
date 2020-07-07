@@ -13,12 +13,23 @@
  *= require_tree .
  *= require_self
  */
-/*@import 'bulma/css/bulma.css';*/
-@import 'bulma/bulma.css';
+ /*
+@import 'bulma';
+@import 'bulma-extensions';
+@import 'bulma-extensions/bulma-carousel/dist/css/bulma-carousel.min';
+@import 'noty/lib/noty';
+@import 'noty/lib/themes/sunset';
+@import 'dropzone/dist/basic.css';
+@import 'dropzone/dist/dropzone.css';
+@import 'raty-js/lib/jquery.raty';
+@import '@fullcalendar/core/main.css';
+@import '@fullcalendar/daygrid/main.css';
+@import '@fullcalendar/list/main.css'; */
+
+@import 'bulma/css/bulma.css';
 @import 'bulma-extensions.css';
 @import 'bulma-extensions/bulma-carousel/dist/css/bulma-carousel.min.css';
-
-@import	'bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css';
+@import 'bulma-extensions/bulma-timeline/dist/css/bulma-timeline.min.css';
 @import 'noty/lib/noty.css';
 @import 'noty/lib/themes/sunset.css';
 @import 'dropzone/dist/basic.css';
@@ -27,3 +38,4 @@
 @import '@fullcalendar/core/main.css';
 @import '@fullcalendar/daygrid/main.css';
 @import '@fullcalendar/list/main.css';
+

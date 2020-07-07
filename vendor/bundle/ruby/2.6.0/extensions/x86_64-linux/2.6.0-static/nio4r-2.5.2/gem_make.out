@@ -1,5 +1,5 @@
 current directory: /usr/share/freelancer/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.2/ext/nio4r
-/usr/local/bin/ruby -I /usr/local/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200703-20596-2p7egr.rb extconf.rb
+/usr/local/bin/ruby -I /usr/local/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200707-2241-1wzrxk4.rb extconf.rb
 checking for unistd.h... yes
 checking for linux/aio_abi.h... yes
 checking for sys/select.h... yes
@@ -71,4 +71,4 @@ linking shared-object nio4r_ext.so
 
 current directory: /usr/share/freelancer/vendor/bundle/ruby/2.6.0/gems/nio4r-2.5.2/ext/nio4r
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20200703-20596-wradkb
+/usr/bin/install -c -m 0755 nio4r_ext.so ./.gem.20200707-2241-13ituho

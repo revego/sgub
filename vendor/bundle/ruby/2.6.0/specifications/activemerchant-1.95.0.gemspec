@@ -14,10 +14,10 @@ Gem::Specification.new do |s|
   s.homepage = "http://activemerchant.org/".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3".freeze)
-  s.rubygems_version = "3.1.3".freeze
+  s.rubygems_version = "3.1.4".freeze
   s.summary = "Framework and tools for dealing with credit card transactions.".freeze
 
-  s.installed_by_version = "3.1.3" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.1.4" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
