@@ -11,7 +11,15 @@
                 <div class="card-header-title">
                     Gigs <% if @category %> > <%= @category.name %> <span class="badge is-left">8</span> <% end %>
                 </div>
-
+				
+				<style>
+		            a:visited {
+		                color: #545658;
+		            }
+		            a:link {
+		                color: #0e0e0e;
+		            }
+		        </style>
                 <!-- Sort by Dropdown -->
                 <%= form_tag '', method: :get do %>
                     <%= hidden_field_tag 'category', @category ? @category.id : '' %>

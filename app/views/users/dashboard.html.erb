@@ -239,11 +239,24 @@
                         <% end %>
                     </div>
 
-
+					<style>
+			            a:visited {
+			                color: #545658;
+			            }
+			            a:link {
+			                color: #0e0e0e;
+			            }
+			            a:active {
+			                color: green;
+			            }
+			            a:hover {
+			                color: gray;
+			            }
+			        </style>
                     <!-- Sample Gig -->
                     <% current_user.gigs.each do |gig| %>
 
-                        <div class="column is-one-third">
+                        <div class="column is-one-third-desktop">
                             <div class="card">
 
                                 <div class="card-image">
