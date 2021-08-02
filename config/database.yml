@@ -23,14 +23,9 @@ default: &default
 
 development:
   <<: *default
-<<<<<<< HEAD
   database: freelance_development
   username: postgres
   host: 192.168.1.5
-=======
-  database: freelancer_development
-
->>>>>>> f82780bf6898775d097f8bffa15fe68798482786
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -87,11 +82,9 @@ test:
 production:
   <<: *default
   database: freelance_production
-  username: freelancer
+  username: postgres
+  #username: freelancer
   password: <%= ENV['SECRET_KEY_BASE'] %>
-  host: 192.168.1.48
-<<<<<<< HEAD
-=======
+  host: 192.168.1.5
   port: 5432
 
->>>>>>> f82780bf6898775d097f8bffa15fe68798482786
