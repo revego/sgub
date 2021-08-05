@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'https://www.sgub.it/cable'
+  config.action_cable.url = 'https://www.pyjob.cloud/cable'
   # config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
   # config.action_cable.allowed_request_origins = [ 'https://sgub.it', /http:\/\/sgub.*/ ]
   # ope for any connection

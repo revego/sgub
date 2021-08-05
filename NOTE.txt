@@ -1,0 +1,48 @@
+# Old apache2 schema with passenge
+ServerName www.pyjobs.cloud
+ServerAlias pyjobs.cloud
+# Tell Apache and Passenger where your app's 'public' directory is
+DocumentRoot /usr/share/freelancer/public
+
+#PassengerRuby /root/.rbenv/versions/2.6.3/bin/ruby
+#PassengerDefaultRuby /usr/local/bin/ruby
+#PassengerRuby /usr/local/rvm/rubies/ruby-2.6.3/bin/ruby
+#PassengerRuby /usr/local/rvm/gems/ruby-2.6.3/wrappers/ruby
+PassengerFriendlyErrorPages on
+
+#RequestHeader set X-Forwarded-Proto https
+ProxyPreserveHost On
+PassengerInstanceRegistryDir /run/passenger-instreg
+# The order is important here
+#ProxyPass         /cable/ wss://www.sgub.it/cable/
+#ProxyPassReverse  /cable/ wss://www.sgub.it/cable/
+#ProxyPass /websocket  ws://sgub.it/
+#ProxyPass /websocket wss://sgub.it/
+
+RailsEnv production
+#PassengerStartupFile config.ru
+
+# Relax Apache security setting
+#LoadModule passenger_module /usr/local/lib/ruby/gems/2.6.0/gems/passenger-5.0.25/buildout/apache2/mod_passenger.so
+<IfModule mod_passenger.c>
+     PassengerRoot /usr/local/lib/ruby/gems/2.6.0/gems/passenger-6.0.9
+     #PassengerDefaultRuby /usr/local/bin/ruby
+</IfModule>
+<Directory /usr/share/freelancer/public>
+    Options FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+
+    Allow from all
+    Options -MultiViews
+    # Uncomment this if you're on Apache >= 2.4:
+    Require all granted
+</Directory>
+
+Include /etc/letsencrypt/options-ssl-apache.conf
+SSLCertificateFile /etc/letsencrypt/live/pyjobs.cloud/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/pyjobs.cloud/privkey.pem
+SSLCertificateFile /etc/letsencrypt/live/www.pyjobs.cloud/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/www.pyjobs.cloud/privkey.pem
+
+

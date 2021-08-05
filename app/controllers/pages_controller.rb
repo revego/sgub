@@ -68,7 +68,7 @@ class PagesController < ApplicationController
   end
 
   def plans
-    @plans = Stripe::Plan.list(product: 'prod_HWDUheCvtwmvTU')
+    @plans = Stripe::Plan.list(product: 'prod_JyAzN5SYaB5IRb')
   end
   
   def terms

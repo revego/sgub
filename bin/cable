@@ -1,2 +1,2 @@
 #!/bin/sh
-exec bundle exec passenger start -p wss://www.sgub.it/cable -R cable/config.ru --force-max-concurrent-requests-per-process 0
+exec bundle exec passenger start -p wss://www.pyjob.cloud/cable -R cable/config.ru --force-max-concurrent-requests-per-process 0
