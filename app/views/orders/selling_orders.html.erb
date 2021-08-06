@@ -1,5 +1,5 @@
 <section class="section">
-    <div class="container">
+    <div class="table-container">
         <p class="title">Manage Selling Orders</p>
 
         <table class="table is-fullwidth">
@@ -7,6 +7,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Buyer Name</th>
+                    <th>Avatar</th>
                     <th>Title</th>
                     <th>Due Date</th>
                     <th>Amount</th>
@@ -24,10 +25,17 @@
                         <td><%= o.created_at.strftime('%d %b %Y') %></td>
                         <td><%= o.buyer_name %></td>
                         <td>
+	                        <figure class="image is-24x24 avatar <%= o.buyer.status ? "online" : "offline" %>">
+                            	<%= image_tag avatar_url(o.buyer), class: "is-rounded" %>
+                            </figure>
+                        </td>
+                        
+                        <!--td><%= image_tag avatar_url(o.buyer), class: "is-rounded" %></td-->
+                        <td>
                             <%= link_to o.title, order_detail_path(o) %>
                         </td>
                         <td><%= o.due_date.strftime('%d %b %Y') %></td>
-                        <td><%= o.amount %></td>
+                        <td>€<%= o.amount %></td>
                         <td>
                             <span class="tag <%= 'is-warning' if o.inprogress? %> <%= 'is-success' if o.completed? %>">
                                 <%= o.status.capitalize %>

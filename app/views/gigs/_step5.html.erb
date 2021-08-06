@@ -13,7 +13,7 @@
 
     <p class="control">
         <% if @step != 5 %>
-            <%= f.submit 'Save & Continue', class: "button is-primary" %>
+            <%= f.submit 'Save & Continue', class: "button is-dark" %>
         <% else %>
             <%= link_to 'Publish', gig_path(@gig.id, gig: {active: true}, step: @step), 
                         method: :put, 

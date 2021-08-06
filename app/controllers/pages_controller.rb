@@ -68,6 +68,14 @@ class PagesController < ApplicationController
   end
 
   def plans
-    @plans = Stripe::Plan.list(product: 'prod_FUYw3idiOrdeJv')
+    @plans = Stripe::Plan.list(product: 'prod_JyAzN5SYaB5IRb')
+  end
+  
+  def terms
+    render template: "pages/terms"
+  end
+  
+  def privacy
+    render template: "pages/privacy"
   end
 end

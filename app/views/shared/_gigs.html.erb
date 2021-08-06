@@ -22,14 +22,17 @@
             <footer class="card-footer">
                 <span class="card-footer-item">
                     <%= link_to users_path(gig.user) do %>
-                        <figure class="image is-32x32">
+                        <figure class="image is-32x32 avatar <%= gig.user.status ? "online" : "offline" %>">
                             <%= image_tag avatar_url(gig.user), class: "is-rounded" %>
                         </figure>
+                        <span class="is-size-7 has-text-grey"><%= gig.user.full_name %></span>
+                        <!--span class="is-size-7 has-text-grey"><%= gig.user.about %></span-->
+                        
                     <% end %>
                 </span>
-                <a class="has-text-danger is-block card-footer-item has-text-right">
-                    <span class="small-title">STARTING AT</span> 
-                    <strong>$<%= gig.price %></strong>
+                <a class="has-text-grey-light is-size-6 is-block card-footer-item has-text-left">
+                    <span class="small-title is-size-7">STARTING AT</span> 
+                    <strong class="has-text-dark">€<%= gig.price %></strong>
                 </a>
             </footer>  
             

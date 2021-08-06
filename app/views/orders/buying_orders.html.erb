@@ -1,5 +1,5 @@
 <section class="section">
-    <div class="container">
+    <div class="table-container">
         <p class="title">Manage Buying Orders</p>
 
         <table class="table is-fullwidth">
@@ -7,6 +7,7 @@
                 <tr>
                     <th>Date</th>
                     <th>Seller Name</th>
+                    <th>Avatar</th>
                     <th>Title</th>
                     <th>Due Date</th>
                     <th>Amount</th>
@@ -24,6 +25,12 @@
                     <tr>
                         <td><%= o.created_at.strftime('%d %b %Y') %></td>
                         <td><%= o.seller_name %></td>
+                        <td>
+	                        <figure class="image is-24x24 avatar <%= o.seller.status ? "online" : "offline" %>">
+                            	<%= image_tag avatar_url(o.seller), class: "is-rounded" %>
+                            </figure>
+                        </td>
+	                        
                         <td>
                             <%= link_to o.title, order_detail_path(o) %>
                         </td>

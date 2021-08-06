@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! #This line just says that a user has to be logged in to access a certain page
 
   def dashboard
     @subscription = Subscription.find_by_user_id(current_user.id)

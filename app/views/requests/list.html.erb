@@ -1,5 +1,5 @@
 <section class="section">
-    <div class="container">
+    <div class="table-container">
         <p class="title">
             All requests
             <%= link_to 'Post a request', new_request_path, class: "button is-primary is-pulled-right" %>
@@ -17,7 +17,7 @@
                     </div>
                 <% end %>
             </div>
-            <div class="card-content">
+            <div class="table-container card-content">
 
                 <table class="table is-fullwidth">
                     <thead>
@@ -25,9 +25,9 @@
                             <th>Date</th>
                             <th>Buyer</th>
                             <th>Request</th>
-                            <th class="has-text-centered">Offers</th>
-                            <th class="has-text-centered">Duration</th>
-                            <th class="has-text-centered">Budget</th>
+                            <th class="has-text-right">Offers</th>
+                            <th class="has-text-right">Duration</th>
+                            <th class="has-text-right">Budget</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +40,7 @@
                             <tr>
                                 <td><%= r.created_at.strftime('%d, %b %Y') %></td>
                                 <td>
-                                    <figure class="image is-48x48">
+                                    <figure class="image is-48x48 avatar <%= r.user.status ? "online" : "offline" %>">
                                         <%= image_tag avatar_url(r.user), class: "is-rounded" %>
                                     </figure>
                                 </td>
@@ -51,9 +51,15 @@
                                         </label>
                                     <% end %>
                                 </td>
-                                <td class="has-text-right"><%= r.offers.count %></td>
+                                <td>
+	                                <div class="tags has-addons is-right">
+									  <span class="tag is-warning"><%= r.offers.count %></span>
+									  <span class="tag is-light">Active</span>
+									</div>
+                                </td>
+                                <!--td class="has-text-right"><%= r.offers.count %></td-->
                                 <td class="has-text-right"><%= pluralize(r.delivery, 'day') %></td>
-                                <td class="has-text-right">$<%= r.budget %></td>
+                                <td class="has-text-right">€<%= r.budget %></td>
                             </tr>
                         <% end %>
                     </tbody>

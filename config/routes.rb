@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/earnings', to: 'users#earnings', as: 'earnings'
   get '/conversations', to: 'conversations#list', as: "conversations"
   get '/conversations/:id', to: 'conversations#show', as: "conversation_detail"
+  get '/terms', to: 'pages#terms'
+  get '/privacy', to: 'pages#privacy'
 
   post '/users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
   post '/settings/payment', to: 'users#update_payment', as: "update_payment"
   post '/settings/payout', to: 'users#update_payout', as: "update_payout"
   post '/users/withdraw', to: 'users#withdraw', as: 'withdraw'
-  post 'messages', to: 'messages#create'
+  post '/messages', to: 'messages#create'
   post '/comments', to: 'comments#create'
   post '/subscribe', to: 'subscriptions#subscribe'
   post '/webhook', to: 'subscriptions#webhook'

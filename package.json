@@ -2,6 +2,7 @@
   "name": "freelancer",
   "private": true,
   "dependencies": {
+    "@creativebulma/bulma-badge": "^1.0.1",
     "@fullcalendar/core": "4.2.0",
     "@fullcalendar/daygrid": "4.2.0",
     "@fullcalendar/list": "4.2.0",
@@ -20,12 +21,13 @@
     "trix": "^1.0.0",
     "turbolinks": "^5.2.0"
   },
-  "version": "1.0.0",
+  "version": "2.1.12",
   "devDependencies": {
     "release-it": "^13.6.2",
     "webpack-dev-server": "^3.7.1"
   },
   "scripts": {
-    "release": "release-it"
+    "release": "release-it",
+    "postinstall": "cp node_modules/@rails/actioncable/app/assets/javascripts/action_cable.js app/javascript"
   }
 }

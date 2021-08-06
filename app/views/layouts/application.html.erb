@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sgub</title>
+    <title>Pyjob</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="action-cable-url" content="/cable" />
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-badge@1.0.1/dist/bulma-badge.min.css" type="text/css">
+    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.4/css/bulma.min.css" type="text/css"-->
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://js.stripe.com/v3/"></script>
 
+    <script src="https://js.stripe.com/v3/"></script>
+    
     <% if content_for?(:head) %>
       <%= yield(:head) %>
     <% end %>
+    
+    
+	<%= render 'shared/drift' %>
   </head>
 
   <body>
+	
     <%= render  "shared/navbar" %>
     <%= render 'shared/notification' %>
     

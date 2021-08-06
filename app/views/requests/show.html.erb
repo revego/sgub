@@ -15,7 +15,7 @@
                                     <%= @request.category.name %>
                                     <span class="is-pulled-right">Posted on: <%= @request.created_at.strftime('%d, %b %Y') %></span>
                                 </p>
-                                Need to be delivered in: <%= @request.delivery %> days | Offers: <%= @request.offers.count %> | Budget: $<%= @request.budget %>
+                                Need to be delivered in: <%= @request.delivery %> days | Offers: <%= @request.offers.count %> | Budget: €<%= @request.budget %>
                             </div>
                         </article>
                     </div>
@@ -54,13 +54,13 @@
                                         <!-- Buyer Avatar -->
                                         <div class="column">
                                             <div class="card-content is-horizontal-center is-flex">
-                                                <figure class="image is-96x96">
+                                                <figure class="image is-96x96 m-r-5 avatar <%= @request.user.status ? "online" : "offline" %>">
                                                     <%= image_tag avatar_url(@request.user), class: "is-rounded" %>
                                                 </figure>
                                             </div>
                                             <div class="content has-text-centered">
                                                 <p class="title is-5"><%= @request.user.full_name %></p>
-                                                <button class="button is-black is-outlined is-fullwidth">Contact Me</button>
+                                                <button class="button is-black is-outlined is-fullwidth toggle-contact">Contact Me</button>
                                             </div>
                                         </div>
 
@@ -110,7 +110,7 @@
                         <div class="card-content">
                             <%= f.hidden_field :request_id, value: @request.id %>
                             <div class="field">
-                                <label for="" class="label">Amount ($)</label>
+                                <label for="" class="label">Amount (€)</label>
                                 <%= f.text_field :amount, class: "input" %>
                             </div>
                             <div class="field">
@@ -121,7 +121,7 @@
                                 <label for="" class="label">Offer note</label>
                                 <%= f.text_area :note, class: "textarea" %>
                             </div>
-                            <%= f.submit 'Send Offer', class: "button is-primary is-fullwidth" %>
+                            <%= f.submit 'Send Offer', class: "button is-dark is-fullwidth" %>
 
                         </div>
 
@@ -132,3 +132,60 @@
         </div>
     </div>
 </section>
+
+<div class="modal" id="contact-form">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Send a Message</p>
+            <button class="delete toggle-contact" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="columns">
+                <div class="column is-one-third">
+                    <div class="card" st>
+                        <div class="card-content is-horizontal-center is-flex">
+                            <figure class="image is-128x128">
+                                <%= image_tag avatar_url(@request.user), class: "is-rounded" %>
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <hr>
+                            <strong>Please include:</strong>
+                            <ul class="is-size-7" style="list-style:initial">
+                                <li>Project description</li>
+                                <li>Specific instructions</li>
+                                <li>Relevant files</li>
+                                <li>Your budget</li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>   
+                <div class="column">
+                    <%= form_with model: Message.new do |f| %>
+                        <%= f.hidden_field :receiver_id, value: @request	.user.id %>
+                        <div class="card-content">
+                            <div class="field">
+                                <div class="control">
+                                    <%= f.text_area :content, class: "textarea" %>
+                                </div>
+                            </div>
+                            <%= f.submit "Send", class: "button is-danger is-pulled-right" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    var toggle_modals = $('.toggle-contact');
+    if (toggle_modals) {
+        toggle_modals.on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            var form = document.getElementById('contact-form');
+            form.classList.toggle('is-active');
+        });
+    }
+</script>

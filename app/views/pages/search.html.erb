@@ -9,9 +9,17 @@
 
                 <!-- Category -->
                 <div class="card-header-title">
-                    Gigs <% if @category %> > <%= @category.name %> <% end %>
+                    Gigs <% if @category %> > <%= @category.name %> <span class="badge is-left">8</span> <% end %>
                 </div>
-
+				
+				<style>
+		            a:visited {
+		                color: #545658;
+		            }
+		            a:link {
+		                color: #0e0e0e;
+		            }
+		        </style>
                 <!-- Sort by Dropdown -->
                 <%= form_tag '', method: :get do %>
                     <%= hidden_field_tag 'category', @category ? @category.id : '' %>
@@ -55,7 +63,7 @@
                                     <label class="label">Price Range</label>
                                     <div class="field has-addons">
                                         <p class="control">
-                                            <a class="button is-static">$</a>
+                                            <a class="button is-static">€</a>
                                         </p>
                                         <p class="control">                                            
                                             <%= number_field_tag 'min', @min || '', class: "input", placeholder: "Min" %>                                        
@@ -63,7 +71,7 @@
                                     </div>
                                     <div class="field has-addons">
                                         <p class="control">
-                                            <a class="button is-static">$</a>
+                                            <a class="button is-static">€</a>
                                         </p>
                                         <p class="control">
                                             <%= number_field_tag 'max', @max || '', class: "input", placeholder: "Max" %>

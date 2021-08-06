@@ -1,5 +1,5 @@
 <section class="section">
-    <div class="container">
+    <div class="table-container">
         <p class="title">View Offers</p>
         <table class="table is-fullwidth">
             <thead>
@@ -28,7 +28,7 @@
                             </figure>
                         </td>
                         <td><%= o.note %></td>
-                        <td>$<%= o.amount %></td>
+                        <td>€<%= o.amount %></td>
                         <td><%= pluralize(o.days, 'day') %></td>
                         <td>
                             <span class="tag <%= 'is-warning' if o.pending? %> 

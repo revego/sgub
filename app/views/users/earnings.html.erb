@@ -1,5 +1,5 @@
 <section class="section">
-    <div class="container">
+    <div class="table-container">
         <p class="title">Earnings</p>
 
         <div class="card">
@@ -7,23 +7,23 @@
                 <div class="columns has-text-centered">
                     <div class="column">
                         Net income
-                        <p class="is-size-4">$<%= @net_income %></p>
+                        <p class="is-size-4">€<%= @net_income %></p>
                     </div>
                     <div class="column">
                         Withdrawn
-                        <p class="is-size-4">$<%= @withdrawn %></p>
+                        <p class="is-size-4">€<%= @withdrawn %></p>
                     </div>
                     <div class="column">
                         Used for Purchases
-                        <p class="is-size-4">$<%= @purchased %></p>
+                        <p class="is-size-4">€<%= @purchased %></p>
                     </div>
                     <div class="column">
                         Pending Clearance
-                        <p class="is-size-4">$<%= @pending %></p>
+                        <p class="is-size-4">€<%= @pending %></p>
                     </div>
                     <div class="column">
                         Available for Withdrawal
-                        <p class="is-size-4">$<%= @withdrawable %></p>
+                        <p class="is-size-4">€<%= @withdrawable %></p>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     <div class="field is-grouped">
                         <div class="field is-horizontal" style="flex: 1">
                             <div class="field-label is-normal">
-                                <label class="label">Withdraw Amount ($)</label>
+                                <label class="label">Withdraw Amount (€)</label>
                             </div>
                             <div class="field-body">
                                 <div class="field">
@@ -58,6 +58,7 @@
                 <div class="card-header-title">Transaction History</div>
             </div>
             <div class="card-content">
+	            <div class="table-container">
                 <table class="table is-fullwidth">
                     <thead>
                         <tr>
@@ -73,12 +74,16 @@
                             <tr>
                                 <td><%= t.created_at.strftime('%d, %b %Y') %></td>
                                 <td><%= t.gig ? t.gig.title : "Withdraw Amount" %></td>
-                                <td><%= t.transaction_type %></td>
-                                <td><span class="tag"><%= t.status %></span></td>
+                                <% if t.transaction_type == 0 and t.source_tupe == 0 %>
+                                	<td><span class="tag is-info"><%= t.transaction_type %></span></td>
+                                <% else %>
+                                	<td><span class="tag is-ligth"><%= t.transaction_type %></span></td>
+                                <% end %>
+                                <td><span class="tag is-primary"><%= t.status %></span></td>
                                 <td>
-                                    <span class="<%= current_user.id == t.buyer_id ? 'has-text-danger' : 'has-text-success' %>">
+                                    <span class="<%= current_user.id == t.buyer_id ? 'tag is-danger' : 'tag is-primary' %>">
                                         <%= current_user.id == t.buyer_id ? '-' : '+' %>
-                                        $<%= current_user.id == t.buyer_id ? t.amount : (t.amount / 1.1).round(2) %>
+                                        €<%= current_user.id == t.buyer_id ? t.amount : (t.amount / 1.1).round(2) %>
                                     </span>
                                 </td>
                             </tr>
@@ -86,8 +91,8 @@
                     </tbody>
                 </table>
                 <%= paginate @transactions %>
+            	</div>
             </div>
-
         </div>
     </div>
 </section>
