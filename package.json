@@ -24,7 +24,7 @@
   "version": "2.1.12",
   "devDependencies": {
     "release-it": "^13.6.2",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^5.2.4"
   },
   "scripts": {
     "release": "release-it",
